@@ -1,3 +1,40 @@
+# S-UI-X 简体中文增强版 🇨🇳
+
+> 基于 [deposist/s-ui-x](https://github.com/deposist/s-ui-x)，由「爱分享的华哥」持续维护的简体中文国际化增强版本（非官方发行）。
+> This is a community-maintained localization distribution, not an official or independently rewritten S-UI-X.
+
+[English](#original-s-ui-x-readme) | [简体中文](README.zh-CN.md)
+
+**Release target:** `v1.5.11-cn.1` · **Locale:** 100% · **Upstream compatible**
+
+- ✅ English / 简体中文自由切换并保存语言偏好
+- ✅ 用户可见硬编码英文已迁移到 Vue I18n
+- ✅ 中文术语统一、历史误译修正与 Locale Parity 自动检查
+- ✅ 保持 sing-box、协议、API 和数据库核心逻辑不变
+- ✅ 桌面端、390px 窄屏 UI 验收及 Unit / Lint / TypeScript / Build 全绿
+
+## 🚀 Linux 一键安装
+
+> 安装器只下载本 Fork 的最新稳定 GitHub Release，不会从 `main` 分支现场编译。首次正式资产将在 `v1.5.11-cn.1` Release 发布后可用。
+
+```bash
+bash <(curl -Ls https://raw.githubusercontent.com/webhuage-debug/s-ui-x/main/install.sh)
+```
+
+如需先审阅脚本再执行：
+
+```bash
+curl -LO https://raw.githubusercontent.com/webhuage-debug/s-ui-x/main/install.sh
+chmod +x install.sh
+./install.sh
+```
+
+📖 [中文文档](README.zh-CN.md) · [Releases](https://github.com/webhuage-debug/s-ui-x/releases) · [Upstream](https://github.com/deposist/s-ui-x)
+
+---
+
+# Original S-UI-X README
+
 ## S-UI
 
 <p align="center">

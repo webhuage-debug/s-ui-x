@@ -8,6 +8,12 @@
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
+# Keep the upstream installer intact while selecting this distribution's
+# GitHub Releases by default. Maintainers can override this for validation.
+SUI_RELEASE_REPOSITORY="${SUI_RELEASE_REPOSITORY:-webhuage-debug/s-ui-x}"
+SUI_RELEASE_API="https://api.github.com/repos/${SUI_RELEASE_REPOSITORY}/releases"
+SUI_RELEASE_DOWNLOAD_BASE="https://github.com/${SUI_RELEASE_REPOSITORY}/releases/download"
+
 plain='\033[0m'
 
 LANG_FILE="/etc/s-ui/lang"
@@ -189,7 +195,7 @@ cur_dir=$(pwd)
 
 ask_language
 
-[[ $EUID -ne 0 ]] && echo -e "${red}$(t run_as_root)${plain}\n" && exit 1
+[[ $(id -u) -ne 0 ]] && echo -e "${red}$(t run_as_root)${plain}\n" && exit 1
 
 # Persist selected language so the management menu picks it up.
 mkdir -p "$(dirname "${LANG_FILE}")"
@@ -216,7 +222,7 @@ arch() {
     armv6* | armv6) echo 'armv6' ;;
     armv5* | armv5) echo 'armv5' ;;
     s390x) echo 's390x' ;;
-    *) echo -e "${green}$(t arch_unsupported)${plain}" && rm -f install.sh && exit 1 ;;
+    *) echo -e "${red}$(t arch_unsupported)${plain}" >&2 && exit 1 ;;
     esac
 }
 
@@ -457,13 +463,13 @@ install_s-ui() {
     artifact_name="s-ui-linux-$(arch).tar.gz"
 
     if [[ $# -eq 0 || -z "${1:-}" ]]; then
-        last_version=$(curl -Ls "https://api.github.com/repos/deposist/s-ui-x/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -fsSL --proto '=https' --tlsv1.2 "${SUI_RELEASE_API}/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}$(t rate_limited)${plain}"
             exit 1
         fi
         echo -e "$(t fetching_latest "${last_version}")"
-        url="https://github.com/deposist/s-ui-x/releases/download/${last_version}/${artifact_name}"
+        url="${SUI_RELEASE_DOWNLOAD_BASE}/${last_version}/${artifact_name}"
         wget -N --timeout=20 --tries=5 --retry-connrefused -O "/tmp/${artifact_name}" "${url}"
         if [[ $? -ne 0 ]]; then
             echo -e "${red}$(t download_failed)${plain}"
@@ -473,7 +479,7 @@ install_s-ui() {
     else
         last_version=$1
         [[ "${last_version}" != v* ]] && last_version="v${last_version}"
-        url="https://github.com/deposist/s-ui-x/releases/download/${last_version}/${artifact_name}"
+        url="${SUI_RELEASE_DOWNLOAD_BASE}/${last_version}/${artifact_name}"
         echo -e "$(t installing_specific "${last_version}")"
         wget -N --timeout=20 --tries=5 --retry-connrefused -O "/tmp/${artifact_name}" "${url}"
         if [[ $? -ne 0 ]]; then
