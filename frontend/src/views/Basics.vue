@@ -131,7 +131,7 @@
         </v-row>
       </v-expansion-panel-text>
     </v-expansion-panel>
-    <v-expansion-panel title="Experimental">
+    <v-expansion-panel :title="$t('setting.sections.experimentalSettings')">
       <v-expansion-panel-text>
         <v-row>
           <v-col class="v-card-subtitle">{{ $t('singbox.cacheFile') }}</v-col>
@@ -437,7 +437,7 @@ const outboundTags = computed((): string[] => {
 const levels = ["trace", "debug", "info", "warn", "error", "fatal", "panic"]
 const certificateModes = [
   { title: i18n.global.t('singbox.off'), value: 'off' },
-  { title: 'System', value: 'system' },
+  { title: i18n.global.t('system'), value: 'system' },
   { title: 'Mozilla', value: 'mozilla' },
   { title: 'Chrome', value: 'chrome' },
   { title: i18n.global.t('singbox.customCaFile'), value: 'file' },

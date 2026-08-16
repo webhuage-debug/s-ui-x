@@ -22,8 +22,8 @@
           <v-icon :icon="event.icon" :class="`nexus-recent-events__icon--${event.tone}`" />
 
           <div class="nexus-recent-events__copy">
-            <strong>{{ event.text }}</strong>
-            <span v-if="event.detail" class="nexus-recent-events__detail">{{ event.detail }}</span>
+            <strong>{{ $t(event.textKey) }}</strong>
+            <span v-if="event.detail" class="nexus-recent-events__detail">{{ detailLabel(event.detail) }}</span>
           </div>
 
           <time :datetime="dateTimeValue(event.timestamp)" class="nexus-mono">
@@ -43,7 +43,7 @@ import DenseList from '@/components/nexus/primitives/DenseList.vue'
 import StatusBadge from '@/components/nexus/primitives/StatusBadge.vue'
 import OverviewPanel from './OverviewPanel.vue'
 import OverviewState from './OverviewState.vue'
-import type { AuditDisplayItem } from './selectors/auditMapper'
+import type { AuditDisplayDetail, AuditDisplayItem } from './selectors/auditMapper'
 
 const props = defineProps<{
   events: AuditDisplayItem[]
@@ -70,6 +70,14 @@ const emptyCopy = computed(() => {
   if (props.unavailable) return t('nexus.overview.events.emptyUnavailable')
   return t('nexus.overview.events.empty')
 })
+
+const detailLabel = (detail: AuditDisplayDetail): string => {
+  const fields: string[] = []
+  if (detail.actor) fields.push(t('nexus.overview.events.detail.actor', { value: detail.actor }))
+  if (detail.resource) fields.push(t('nexus.overview.events.detail.resource', { value: detail.resource }))
+  if (detail.event) fields.push(t('nexus.overview.events.detail.event', { value: detail.event }))
+  return fields.join('; ')
+}
 
 const eventDate = (timestamp: number): Date | undefined => {
   if (!timestamp) return

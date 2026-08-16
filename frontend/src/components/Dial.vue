@@ -59,10 +59,10 @@
     </v-row>
     <v-row v-if="optionTCP">
       <v-col cols="12" sm="6" md="4">
-        <v-switch v-model="dial.tcp_fast_open" color="primary" label="TCP Fast Open" hide-details></v-switch>
+        <v-switch v-model="dial.tcp_fast_open" color="primary" :label="$t('listen.tcpFastOpen')" hide-details></v-switch>
       </v-col>
       <v-col cols="12" sm="6" md="4">
-        <v-switch v-model="dial.tcp_multi_path" color="primary" label="TCP Multi Path" hide-details></v-switch>
+        <v-switch v-model="dial.tcp_multi_path" color="primary" :label="$t('listen.tcpMultiPath')" hide-details></v-switch>
       </v-col>
     </v-row>
     <v-row v-if="optionTcpKeepAlive">
@@ -78,7 +78,7 @@
     </v-row>
     <v-row>
       <v-col cols="12" sm="6" md="4" v-if="optionUDP">
-        <v-switch v-model="dial.udp_fragment" color="primary" label="UDP Fragment" hide-details></v-switch>
+        <v-switch v-model="dial.udp_fragment" color="primary" :label="$t('listen.udpFragment')" hide-details></v-switch>
       </v-col>
       <v-col cols="12" sm="6" md="4" v-if="optionCT">
         <v-text-field

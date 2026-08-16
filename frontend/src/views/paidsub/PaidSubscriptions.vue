@@ -875,7 +875,7 @@ const doRefund = async () => {
   refundBusy.value = false
   if (msg.success) {
     refundDialog.value = false
-    push.success({ title: i18n.global.t('success'), message: 'Refund processed', duration: 4000 })
+    push.success({ title: i18n.global.t('success'), message: i18n.global.t('paidSub.refund.done'), duration: 4000 })
     await loadOrders()
   }
 }

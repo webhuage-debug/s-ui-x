@@ -22,96 +22,102 @@ export const auditDisplayIcons = [
 export type AuditDisplayIcon = typeof auditDisplayIcons[number]
 export type AuditDisplayTone = 'info' | 'success' | 'warning' | 'error'
 
+export interface AuditDisplayDetail {
+  actor?: string
+  resource?: string
+  event?: string
+}
+
 export interface AuditDisplayItem {
   id: number
   timestamp: number
   icon: AuditDisplayIcon
   tone: AuditDisplayTone
-  text: string
-  detail?: string
+  textKey: string
+  detail?: AuditDisplayDetail
 }
 
 type AuditPresentation = {
   icon: AuditDisplayIcon
   tone: AuditDisplayTone
-  text: string
+  textKey: string
 }
 
 const knownAuditEvents = {
   login_success: {
     icon: 'mdi-login',
     tone: 'success',
-    text: 'Login succeeded',
+    textKey: 'nexus.overview.events.items.loginSuccess',
   },
   login_failed: {
     icon: 'mdi-account-alert-outline',
     tone: 'warning',
-    text: 'Login failed',
+    textKey: 'nexus.overview.events.items.loginFailed',
   },
   login_blocked: {
     icon: 'mdi-account-lock-outline',
     tone: 'warning',
-    text: 'Login blocked',
+    textKey: 'nexus.overview.events.items.loginBlocked',
   },
   logout: {
     icon: 'mdi-logout',
     tone: 'info',
-    text: 'Admin logged out',
+    textKey: 'nexus.overview.events.items.logout',
   },
   logout_all_admins: {
     icon: 'mdi-logout-variant',
     tone: 'warning',
-    text: 'All admin sessions logged out',
+    textKey: 'nexus.overview.events.items.logoutAllAdmins',
   },
   admin_credentials_changed: {
     icon: 'mdi-account-key-outline',
     tone: 'warning',
-    text: 'Admin credentials changed',
+    textKey: 'nexus.overview.events.items.adminCredentialsChanged',
   },
   admin_created: {
     icon: 'mdi-account-plus-outline',
     tone: 'warning',
-    text: 'Admin created',
+    textKey: 'nexus.overview.events.items.adminCreated',
   },
   admin_deleted: {
     icon: 'mdi-account-remove-outline',
     tone: 'warning',
-    text: 'Admin deleted',
+    textKey: 'nexus.overview.events.items.adminDeleted',
   },
   api_token_created: {
     icon: 'mdi-key-plus',
     tone: 'warning',
-    text: 'API token created',
+    textKey: 'nexus.overview.events.items.apiTokenCreated',
   },
   api_token_deleted: {
     icon: 'mdi-key-minus',
     tone: 'warning',
-    text: 'API token deleted',
+    textKey: 'nexus.overview.events.items.apiTokenDeleted',
   },
   api_token_enabled_changed: {
     icon: 'mdi-key',
     tone: 'warning',
-    text: 'API token access changed',
+    textKey: 'nexus.overview.events.items.apiTokenEnabledChanged',
   },
   db_imported: {
     icon: 'mdi-database-import-outline',
     tone: 'warning',
-    text: 'Database imported',
+    textKey: 'nexus.overview.events.items.dbImported',
   },
   db_exported: {
     icon: 'mdi-database-export-outline',
     tone: 'warning',
-    text: 'Database exported',
+    textKey: 'nexus.overview.events.items.dbExported',
   },
   sub_secret_rotated: {
     icon: 'mdi-lock-reset',
     tone: 'warning',
-    text: 'Client subscription secret rotated',
+    textKey: 'nexus.overview.events.items.subSecretRotated',
   },
   xui_import: {
     icon: 'mdi-database-import-outline',
     tone: 'success',
-    text: '3x-ui import applied',
+    textKey: 'nexus.overview.events.items.xuiImport',
   },
 } satisfies Record<string, AuditPresentation>
 
@@ -120,7 +126,7 @@ type KnownAuditEvent = keyof typeof knownAuditEvents
 const unknownPresentation: AuditPresentation = {
   icon: 'mdi-shield-alert-outline',
   tone: 'info',
-  text: 'Audit event',
+  textKey: 'nexus.overview.events.items.unknown',
 }
 
 const isKnownAuditEvent = (event: string): event is KnownAuditEvent => {
@@ -144,12 +150,12 @@ const displayDetail = (
   actor: string | undefined,
   resource: string | undefined,
   unknownEvent: string | undefined,
-): string | undefined => {
-  const fields: string[] = []
-  if (actor) fields.push(`actor: ${actor}`)
-  if (resource) fields.push(`resource: ${resource}`)
-  if (unknownEvent) fields.push(`event: ${unknownEvent}`)
-  return fields.length > 0 ? fields.join('; ') : undefined
+): AuditDisplayDetail | undefined => {
+  const detail: AuditDisplayDetail = {}
+  if (actor) detail.actor = actor
+  if (resource) detail.resource = resource
+  if (unknownEvent) detail.event = unknownEvent
+  return Object.keys(detail).length > 0 ? detail : undefined
 }
 
 export const mapAuditDisplayItem = (payload?: unknown): AuditDisplayItem => {
@@ -171,7 +177,7 @@ export const mapAuditDisplayItem = (payload?: unknown): AuditDisplayItem => {
     timestamp: wholeNumber(event.dateTime ?? event.timestamp),
     icon: presentation.icon,
     tone: presentation.tone,
-    text: presentation.text,
+    textKey: presentation.textKey,
   }
 
   if (detail) item.detail = detail

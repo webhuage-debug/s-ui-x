@@ -11,7 +11,7 @@
     <v-tab value="t2">{{ $t('setting.sub') }}</v-tab>
     <v-tab value="t3">{{ $t('setting.jsonSub') }}</v-tab>
     <v-tab value="t4">{{ $t('setting.clashSub') }}</v-tab>
-    <v-tab value="t6">Basics (Singbox)</v-tab>
+    <v-tab value="t6">{{ $t('setting.sections.singboxBasics') }}</v-tab>
     <v-tab value="t5">{{ $t('setting.maintenance') }}</v-tab>
   </v-tabs>
   <v-card-text>
@@ -86,7 +86,7 @@
 
           <v-col cols="12" md="6">
             <v-card variant="outlined" class="settings-section-card">
-              <v-card-title class="settings-section-title">Security & Maintenance</v-card-title>
+              <v-card-title class="settings-section-title">{{ $t('setting.sections.securityMaintenance') }}</v-card-title>
               <v-card-text class="pa-4 pt-2">
                 <v-row>
                   <v-col cols="12" sm="6">
@@ -321,7 +321,7 @@
           </v-col>
           <v-col cols="12" class="v-card-subtitle">{{ $t('setting.subAdvanced') }}</v-col>
           <v-col cols="12" sm="6" md="4">
-            <v-text-field v-model="settings.subTitle" :label="$t('setting.subTitle')" placeholder="My VPN" persistent-placeholder hide-details>
+            <v-text-field v-model="settings.subTitle" :label="$t('setting.subTitle')" :placeholder="$t('setting.placeholders.subTitle')" persistent-placeholder hide-details>
               <template v-slot:append-inner><SettingInfo :text="$t('setting.hint.subTitle')" /></template>
             </v-text-field>
           </v-col>
@@ -355,7 +355,7 @@
             </div>
           </v-col>
           <v-col cols="12">
-            <v-textarea v-model="settings.subAnnounce" :label="$t('setting.subAnnounce')" rows="2" placeholder="Welcome!" persistent-placeholder hide-details>
+            <v-textarea v-model="settings.subAnnounce" :label="$t('setting.subAnnounce')" rows="2" :placeholder="$t('setting.placeholders.subAnnouncement')" persistent-placeholder hide-details>
               <template v-slot:append-inner><SettingInfo :text="$t('setting.hint.subAnnounce')" /></template>
             </v-textarea>
           </v-col>
@@ -364,7 +364,7 @@
         <v-row class="settings-grid" v-else>
           <v-col cols="12" md="6">
             <v-card variant="outlined" class="settings-section-card">
-              <v-card-title class="settings-section-title">Subscription Toggles</v-card-title>
+              <v-card-title class="settings-section-title">{{ $t('setting.sections.subscriptionToggles') }}</v-card-title>
               <v-card-text class="pa-4 pt-2">
                 <v-row>
                   <v-col cols="12" sm="6">
@@ -410,7 +410,7 @@
 
           <v-col cols="12" md="6">
             <v-card variant="outlined" class="settings-section-card">
-              <v-card-title class="settings-section-title">Subscription Connection</v-card-title>
+              <v-card-title class="settings-section-title">{{ $t('setting.sections.subscriptionConnection') }}</v-card-title>
               <v-card-text class="pa-4 pt-2">
                 <v-row>
                   <v-col cols="12" sm="6">
@@ -480,7 +480,7 @@
               <v-card-text class="pa-4 pt-2">
                 <v-row>
                   <v-col cols="12" sm="6" md="3">
-                    <v-text-field v-model="settings.subTitle" :label="$t('setting.subTitle')" placeholder="My VPN" persistent-placeholder hide-details>
+                    <v-text-field v-model="settings.subTitle" :label="$t('setting.subTitle')" :placeholder="$t('setting.placeholders.subTitle')" persistent-placeholder hide-details>
                       <template v-slot:append-inner><SettingInfo :text="$t('setting.hint.subTitle')" /></template>
                     </v-text-field>
                   </v-col>
@@ -514,7 +514,7 @@
                     </div>
                   </v-col>
                   <v-col cols="12">
-                    <v-textarea v-model="settings.subAnnounce" :label="$t('setting.subAnnounce')" rows="2" placeholder="Welcome!" persistent-placeholder hide-details>
+                    <v-textarea v-model="settings.subAnnounce" :label="$t('setting.subAnnounce')" rows="2" :placeholder="$t('setting.placeholders.subAnnouncement')" persistent-placeholder hide-details>
                       <template v-slot:append-inner><SettingInfo :text="$t('setting.hint.subAnnounce')" /></template>
                     </v-textarea>
                   </v-col>
@@ -541,7 +541,7 @@
         <v-row class="settings-grid" v-else>
           <v-col cols="12">
             <v-card variant="outlined" class="settings-section-card">
-              <v-card-title class="settings-section-title">JSON Configuration</v-card-title>
+              <v-card-title class="settings-section-title">{{ $t('setting.sections.jsonConfiguration') }}</v-card-title>
               <v-card-text class="pa-4 pt-2">
                 <v-row>
                   <v-col cols="12" sm="6">
@@ -578,7 +578,7 @@
         <v-row class="settings-grid" v-else>
           <v-col cols="12">
             <v-card variant="outlined" class="settings-section-card">
-              <v-card-title class="settings-section-title">Clash Configuration</v-card-title>
+              <v-card-title class="settings-section-title">{{ $t('setting.sections.clashConfiguration') }}</v-card-title>
               <v-card-text class="pa-4 pt-2">
                 <v-row>
                   <v-col cols="12" sm="6">
@@ -641,7 +641,7 @@
             </v-card>
 
             <v-card variant="outlined" class="settings-section-card d-flex flex-column flex-grow-1">
-              <v-card-title class="settings-section-title">NTP settings</v-card-title>
+              <v-card-title class="settings-section-title">{{ $t('setting.sections.ntpSettings') }}</v-card-title>
               <v-card-text class="pa-4 pt-2">
                 <v-row>
                   <v-col cols="12" sm="6">
@@ -883,7 +883,7 @@
           <!-- Experimental settings (full width) -->
           <v-col cols="12" class="d-flex flex-column">
             <v-card variant="outlined" class="settings-section-card d-flex flex-column">
-              <v-card-title class="settings-section-title">Experimental settings</v-card-title>
+              <v-card-title class="settings-section-title">{{ $t('setting.sections.experimentalSettings') }}</v-card-title>
               <v-card-text class="pa-4 pt-2">
                 <v-row>
                   <v-col cols="12" class="v-card-subtitle px-0 pb-1">{{ $t('singbox.cacheFile') }}</v-col>
@@ -1110,7 +1110,7 @@
                   </v-row>
                 </v-expansion-panel-text>
               </v-expansion-panel>
-              <v-expansion-panel title="Experimental">
+              <v-expansion-panel :title="$t('setting.sections.experimentalSettings')">
                 <v-expansion-panel-text>
                   <v-row>
                     <v-col class="v-card-subtitle">{{ $t('singbox.cacheFile') }}</v-col>
@@ -1450,7 +1450,7 @@ const outboundTags = computed((): string[] => {
 const levels = ["trace", "debug", "info", "warn", "error", "fatal", "panic"]
 const certificateModes = [
   { title: i18n.global.t('singbox.off'), value: 'off' },
-  { title: 'System', value: 'system' },
+  { title: i18n.global.t('nav.groups.system'), value: 'system' },
   { title: 'Mozilla', value: 'mozilla' },
   { title: 'Chrome', value: 'chrome' },
   { title: i18n.global.t('singbox.customCaFile'), value: 'file' },

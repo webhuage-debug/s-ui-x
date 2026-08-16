@@ -252,7 +252,7 @@
               </v-col>
               <v-col cols="12" sm="6" md="4" v-if="optionTime">
                 <v-text-field
-                label="Max Time Diference"
+                :label="$t('tls.maxTimeDifference')"
                 type="number"
                 min="1"
                 :suffix="$t('date.m')"
@@ -284,7 +284,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select
                 hide-details
-                label="Fingerprint"
+                :label="$t('tls.fingerprint')"
                 :items="fingerprints"
                 v-model="outTls.utls.fingerprint">
               </v-select>
@@ -332,7 +332,7 @@
                   </template>
                   <template v-else>
                     <v-list-item>
-                      <v-switch v-model="optionTime" color="primary" label="Max Time Difference" hide-details></v-switch>
+                      <v-switch v-model="optionTime" color="primary" :label="$t('tls.maxTimeDifference')" hide-details></v-switch>
                     </v-list-item>
                   </template>
                 </v-list>
@@ -411,11 +411,11 @@ export default {
       ],
       curvePreferences: ['P256', 'P384', 'P521', 'X25519', 'X25519MLKEM768'],
       clientAuthTypes: [
-        { title: 'No client certificate', value: 'no' },
-        { title: 'Request client certificate', value: 'request' },
-        { title: 'Require any client certificate', value: 'require-any' },
-        { title: 'Verify if given', value: 'verify-if-given' },
-        { title: 'Require and verify', value: 'require-and-verify' },
+        { title: i18n.global.t('tls.clientAuthTypes.no'), value: 'no' },
+        { title: i18n.global.t('tls.clientAuthTypes.request'), value: 'request' },
+        { title: i18n.global.t('tls.clientAuthTypes.requireAny'), value: 'require-any' },
+        { title: i18n.global.t('tls.clientAuthTypes.verifyIfGiven'), value: 'verify-if-given' },
+        { title: i18n.global.t('tls.clientAuthTypes.requireAndVerify'), value: 'require-and-verify' },
       ],
       storeItems: [
         { title: "Mozilla", value: "mozilla" },
@@ -430,8 +430,8 @@ export default {
         { title: "QQ", value: "qq" },
         { title: "Apple IOS", value: "ios" },
         { title: "Android", value: "android" },
-        { title: "Random", value: "random" },
-        { title: "Randomized", value: "randomized" },
+        { title: i18n.global.t('tls.random'), value: "random" },
+        { title: i18n.global.t('tls.randomized'), value: "randomized" },
       ]
     }
   },

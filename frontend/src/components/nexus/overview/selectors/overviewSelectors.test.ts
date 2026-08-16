@@ -238,8 +238,8 @@ describe('overview selectors', () => {
       timestamp: 1710000000,
       icon: 'mdi-login',
       tone: 'success',
-      text: 'Login succeeded',
-      detail: 'actor: admin; resource: auth',
+      textKey: 'nexus.overview.events.items.loginSuccess',
+      detail: { actor: 'admin', resource: 'auth' },
     })
 
     expect(mapAuditDisplayItem({
@@ -254,8 +254,8 @@ describe('overview selectors', () => {
       timestamp: 1710000030,
       icon: 'mdi-account-plus-outline',
       tone: 'warning',
-      text: 'Admin created',
-      detail: 'actor: admin; resource: admin',
+      textKey: 'nexus.overview.events.items.adminCreated',
+      detail: { actor: 'admin', resource: 'admin' },
     })
 
     expect(mapAuditDisplayItem({
@@ -270,8 +270,8 @@ describe('overview selectors', () => {
       timestamp: 1710000035,
       icon: 'mdi-account-remove-outline',
       tone: 'warning',
-      text: 'Admin deleted',
-      detail: 'actor: admin; resource: admin',
+      textKey: 'nexus.overview.events.items.adminDeleted',
+      detail: { actor: 'admin', resource: 'admin' },
     })
 
     const unknown = mapAuditDisplayItem({
@@ -288,11 +288,11 @@ describe('overview selectors', () => {
       timestamp: 1710000040,
       icon: 'mdi-shield-alert-outline',
       tone: 'warning',
-      text: 'Audit event',
-      detail: 'resource: unknown; event: svg onload=alert(1)',
+      textKey: 'nexus.overview.events.items.unknown',
+      detail: { resource: 'unknown', event: 'svg onload=alert(1)' },
     })
     expect(auditDisplayIcons).toContain(unknown.icon)
-    expect(`${unknown.text} ${unknown.detail}`).not.toMatch(/[<>]/)
+    expect(`${unknown.textKey} ${Object.values(unknown.detail ?? {}).join(' ')}`).not.toMatch(/[<>]/)
 
     expect(selectTrafficSeries({
       range: 'tomorrow',

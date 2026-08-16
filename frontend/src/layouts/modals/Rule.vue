@@ -135,7 +135,7 @@
             <v-col cols="12" sm="6" md="4">
               <v-select
                 v-model="ruleData.method"
-                :items="[{ title: 'Default', value: 'default' },{ title: 'Drop', value: 'drop'}, { title: 'Reply', value: 'reply' }]"
+                :items="[{ title: $t('rule.methodOptions.default'), value: 'default' },{ title: $t('rule.methodOptions.drop'), value: 'drop'}, { title: $t('rule.methodOptions.reply'), value: 'reply' }]"
                 :label="$t('rule.method')"
                 clearable
                 @click:clear="delete ruleData.method"
@@ -188,6 +188,7 @@
 import { logicalRule, rule, actionKeys } from '@/types/rules'
 import RuleOptions from '@/components/Rule.vue'
 import FormShell from '@/components/nexus/drawers/FormShell.vue'
+import { i18n } from '@/locales'
 
 // Stable identity key for each sub-rule object so the v-for is not keyed by array
 // index. Splicing out a middle rule then re-binds the remaining RuleOptions
@@ -213,13 +214,13 @@ export default {
         outbound: 'direct',
       },
       actions: [
-        { title: 'Route', value: 'route'},
-        { title: 'Route Options', value: 'route-options'},
-        { title: 'Bypass', value: 'bypass'},
-        { title: 'Reject', value: 'reject'},
-        { title: 'Hijack DNS', value: 'hijack-dns'},
-        { title: 'Sniff', value: 'sniff'},
-        { title: 'Resolve', value: 'resolve'}
+        { title: i18n.global.t('rule.action.route'), value: 'route'},
+        { title: i18n.global.t('rule.action.routeOption'), value: 'route-options'},
+        { title: i18n.global.t('rule.action.bypass'), value: 'bypass'},
+        { title: i18n.global.t('rule.action.reject'), value: 'reject'},
+        { title: i18n.global.t('rule.action.hijackDns'), value: 'hijack-dns'},
+        { title: i18n.global.t('rule.action.sniff'), value: 'sniff'},
+        { title: i18n.global.t('rule.action.resolve'), value: 'resolve'}
       ],
       sniffers: [
         { title: 'HTTP', value: 'http' },
@@ -234,14 +235,14 @@ export default {
         { title: 'NTP', value: 'ntp' },
       ],
       domainStrategies: [
-        { title: 'Prefer IPv4', value: 'prefer_ipv4' },
-        { title: 'Prefer IPv6', value: 'prefer_ipv6' },
-        { title: 'IPv4 Only', value: 'ipv4_only' },
-        { title: 'IPv6 Only', value: 'ipv6_only' },
+        { title: i18n.global.t('rule.strategyOptions.preferIpv4'), value: 'prefer_ipv4' },
+        { title: i18n.global.t('rule.strategyOptions.preferIpv6'), value: 'prefer_ipv6' },
+        { title: i18n.global.t('rule.strategyOptions.ipv4Only'), value: 'ipv4_only' },
+        { title: i18n.global.t('rule.strategyOptions.ipv6Only'), value: 'ipv6_only' },
       ],
       networkStrategies: [
-        { title: 'Fallback', value: 'fallback' },
-        { title: 'Hybrid', value: 'hybrid' },
+        { title: i18n.global.t('rule.strategyOptions.fallback'), value: 'fallback' },
+        { title: i18n.global.t('rule.strategyOptions.hybrid'), value: 'hybrid' },
       ],
     }
   },

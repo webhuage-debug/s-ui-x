@@ -61,7 +61,7 @@
         <v-select
           v-model="rule.client"
           :items="sniffClients"
-          label="Client fingerprint"
+          :label="$t('rule.clientFingerprint')"
           multiple
           chips
           hide-details
@@ -277,7 +277,7 @@
               <v-switch v-model="optionProtocol" color="primary" :label="$t('protocol')" hide-details></v-switch>
             </v-list-item>
             <v-list-item>
-              <v-switch v-model="optionSniffClient" color="primary" label="Client fingerprint" hide-details></v-switch>
+              <v-switch v-model="optionSniffClient" color="primary" :label="$t('rule.clientFingerprint')" hide-details></v-switch>
             </v-list-item>
             <v-list-item>
               <v-switch v-model="optionDomain" color="primary" :label="$t('rule.domainRules')" hide-details></v-switch>

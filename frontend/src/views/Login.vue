@@ -18,7 +18,7 @@
                 variant="solo"
                 :label="$t('menu.language')"
                 :items="languages"
-                v-model="$i18n.locale"
+                :model-value="$i18n.locale"
                 @update:modelValue="changeLocale">
                 <template v-slot:append>
                   <v-menu>

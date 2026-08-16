@@ -152,7 +152,7 @@
                 <v-col>
                   <v-text-field
                     v-if="clientConfig[key].password != undefined"
-                    label="Password"
+                    :label="$t('types.pw')"
                     v-model="clientConfig[key].password"
                     hide-details>
                   </v-text-field>
@@ -164,13 +164,13 @@
                   </v-text-field>
                   <v-text-field
                     v-if="key == 'vless'"
-                    label="Flow"
+                    :label="$t('types.vless.flow')"
                     v-model="clientConfig[key].flow"
                     hide-details>
                   </v-text-field>
                   <v-text-field
                     v-if="key == 'hysteria'"
-                    label="Auth"
+                    :label="$t('types.hy.auth')"
                     v-model="clientConfig[key].auth_str"
                     hide-details>
                   </v-text-field>
@@ -225,7 +225,7 @@ import { defineAsyncComponent } from 'vue'
 import { createClient, randomConfigs, updateConfigs, Link, shuffleConfigs } from '@/types/clients'
 import { HumanReadable } from '@/plugins/utils'
 import Data from '@/store/modules/data'
-import { locale } from '@/locales'
+import { i18n, locale } from '@/locales'
 import FormShell from '@/components/nexus/drawers/FormShell.vue'
 
 const DatePick = defineAsyncComponent(() => import('@/components/DateTime.vue'))
@@ -243,7 +243,10 @@ export default {
       links: <Link[]>[],
       extLinks: <Link[]>[],
       subLinks: <Link[]>[],
-      ipLimitModes: ['monitor', 'enforce'],
+      ipLimitModes: [
+        { title: i18n.global.t('client.ipLimitModeMonitor'), value: 'monitor' },
+        { title: i18n.global.t('client.ipLimitModeEnforce'), value: 'enforce' },
+      ],
       snapshot: '',
     }
   },
