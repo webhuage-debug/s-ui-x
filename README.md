@@ -15,7 +15,7 @@
 
 ## 🚀 Linux 一键安装
 
-> 安装器只下载本 Fork 的最新稳定 GitHub Release，不会从 `main` 分支现场编译。首次正式资产将在 `v1.5.11-cn.1` Release 发布后可用。
+> 安装器只下载本 Fork 的最新稳定 GitHub Release，不会从 `main` 分支现场编译。
 
 ```bash
 bash <(curl -Ls https://raw.githubusercontent.com/webhuage-debug/s-ui-x/main/install.sh)

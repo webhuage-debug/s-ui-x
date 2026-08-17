@@ -29,7 +29,7 @@ Upstream：**deposist/s-ui-x**
 - 中文发行目标：`v1.5.11-cn.1`
 - upstream 基线：[deposist/s-ui-x v1.5.11](https://github.com/deposist/s-ui-x/releases/tag/v1.5.11)
 - 简体中文 Locale：1334/1334，覆盖率 100%
-- 当前状态：代码、文档与安装器已准备；Tag 和 GitHub Release 尚未创建
+- 当前状态：正式 Release 已发布，安装器与 Release Assets 已就绪
 
 版本规则保持 upstream 语义。例如 upstream 升级到 `v1.5.12` 后，中文版对应 `v1.5.12-cn.1`；同一 upstream 基线上的中文版修复递增为 `-cn.2`。
 
@@ -55,7 +55,7 @@ chmod +x install.sh
 bash <(curl -Ls https://raw.githubusercontent.com/webhuage-debug/s-ui-x/main/install.sh) v1.5.11-cn.1
 ```
 
-> `v1.5.11-cn.1` Tag 与 Release 将在下一阶段经维护者确认后创建。在 Release Assets 发布前，安装器会因找不到本 Fork 的稳定发行物而安全退出，不会回退安装 upstream 或 `main` 分支代码。
+> 安装器只使用本 Fork 的稳定 Release；如果 Release 或对应架构资产不存在，会安全退出，不会回退安装 upstream 或 `main` 分支代码。
 
 ## 安装要求
 

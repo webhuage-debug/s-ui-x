@@ -1,6 +1,6 @@
 # S-UI-X 简体中文增强版 v1.5.11-cn.1
 
-> Release date: pending
+> Release date: 2026-08-17
 > Based on upstream: [deposist/s-ui-x v1.5.11](https://github.com/deposist/s-ui-x/releases/tag/v1.5.11)
 
 这是基于 upstream v1.5.11 的首个简体中文增强正式发行版，由「爱分享的华哥」维护。它保留 upstream 的项目结构、GPL-3.0 许可证和核心行为，不是官方中文版，也不是独立重写版本。
@@ -75,7 +75,7 @@ s-ui update
 - 动态后端错误和 sing-box 日志仍保持原文；
 - 现有 5 个 high severity 前端依赖漏洞未在本项目处理；
 - 面板内 Web 自更新仍跟踪 upstream，中文增强版需使用终端更新；
-- Release Tag 与 Assets 将在维护者确认后的下一阶段创建并最终验证。
+- Linux VPS 一键安装冒烟测试需要用户明确授权的可丢弃测试环境。
 
 ## Credits
 
